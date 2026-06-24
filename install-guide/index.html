@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Steam Deck 工具箱 — 安装引导</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- 顶部标题区 -->
+    <header class="header">
+      <h1>🔧 Steam Deck 工具箱</h1>
+      <p class="subtitle">免费开源的 Steam Deck 增强工具集</p>
+      <p class="version">v1.0 · GPL-3.0</p>
+    </header>
+
+    <!-- 功能简介 -->
+    <section class="features">
+      <div class="feature-item">
+        <span class="feature-icon">🔑</span>
+        <span>一键改密码</span>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">📦</span>
+        <span>一键装 Decky</span>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">📊</span>
+        <span>系统信息</span>
+      </div>
+      <div class="feature-item">
+        <span class="feature-icon">🛒</span>
+        <span>Steam 修复</span>
+      </div>
+    </section>
+
+    <!-- 安装步骤 -->
+    <section class="steps">
+      <h2>📦 3 步安装</h2>
+
+      <!-- 步骤 1 -->
+      <div class="step">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>切换到桌面模式</h3>
+          <p>按住电源键 → 选择「切换到桌面」</p>
+          <img src="https://via.placeholder.com/400x120/2a475e/66c0f4?text=Steam+Button+%E2%86%92+Power+%E2%86%92+Desktop" alt="切换桌面模式" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 步骤 2 -->
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>下载安装包</h3>
+          <p>点击下方按钮下载最新版本安装包</p>
+          <a href="https://github.com/deveuper/DeveSteamAPP/releases/latest" class="download-btn" target="_blank" rel="noopener">
+            ⬇️ 下载最新版本
+          </a>
+        </div>
+      </div>
+
+      <!-- 步骤 3 -->
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>安装并使用</h3>
+          <p>解压安装包到 Decky 插件目录，或使用一键安装脚本：</p>
+          <div class="code-block">
+            <code>sh install.sh</code>
+          </div>
+          <p>安装完成后切回游戏模式，在 Decky 中即可看到工具箱</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 一键安装脚本 -->
+    <section class="quick-install">
+      <h2>⚡ 一键安装（进阶）</h2>
+      <p>在桌面模式终端中运行以下命令，自动完成安装：</p>
+      <div class="code-block">
+        <code>sh -c "$(curl -fsSL https://raw.githubusercontent.com/your-repo/SteamdeckAPP/main/install-guide/install.sh)"</code>
+      </div>
+    </section>
+
+    <!-- 扫码安装 -->
+    <section class="qr-section">
+      <h2>📱 手机扫码安装</h2>
+      <p>用手机扫描下方二维码，在手机上查看安装教程</p>
+      <div class="qr-placeholder">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://deveuper.github.io/steam-deck-toolbox/" alt="安装教程二维码" loading="lazy">
+      </div>
+    </section>
+
+    <!-- 定价与购买 -->
+    <section class="pricing">
+      <h2>💰 定价与购买</h2>
+      <div class="pricing-cards">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <span class="pricing-badge">试用</span>
+            <div class="pricing-price">免费</div>
+          </div>
+          <div class="pricing-body">
+            <ul>
+              <li>✅ 全部功能免费使用</li>
+              <li>⏳ 限时 7 天</li>
+              <li>🔒 到期后需购买激活</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-card recommended">
+          <div class="pricing-header">
+            <span class="pricing-badge">推荐</span>
+            <div class="pricing-price">¥19.9</div>
+          </div>
+          <div class="pricing-body">
+            <ul>
+              <li>✅ 永久激活全部功能</li>
+              <li>✅ 支持后续版本更新</li>
+              <li>✅ 一台设备绑定</li>
+              <li>🔑 联系作者获取激活码</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="pricing-note">
+        <p>支付方式：微信支付 / 支付宝（<span class="text-muted">暂未开放，敬请期待</span>）</p>
+        <p>激活码格式：<code>DEVE-XXXXXXXX-XXXXXXXX</code> — 在工具箱「许可证」页输入激活</p>
+        <p>每个激活码仅限一台设备使用，更换设备需重新购买</p>
+      </div>
+    </section>
+
+    <!-- 常见问题 -->
+    <section class="faq">
+      <h2>❓ 常见问题</h2>
+      <details>
+        <summary>需要先安装 Decky Loader 吗？</summary>
+        <p>是的，本工具箱是 Decky Loader 插件。如果还没安装 Decky，可以在工具箱内一键安装，或访问 <a href="https://github.com/SteamDeckHomebrew/decky-loader" target="_blank" rel="noopener">Decky Loader 官方页面</a>。</p>
+      </details>
+      <details>
+        <summary>安装后在哪里找到工具箱？</summary>
+        <p>安装完成后，切回游戏模式，按快捷键打开 Decky 菜单（通常为 ≡ 按键），在插件列表中即可看到「Steam Deck 工具箱」。</p>
+      </details>
+      <details>
+        <summary>修改密码安全吗？</summary>
+        <p>安全。密码通过系统命令 chpasswd 修改，不会记录在日志中，传输过程也不经过网络。</p>
+      </details>
+      <details>
+        <summary>这个工具免费吗？</summary>
+        <p>提供 7 天免费试用，到期后需 ¥19.9 购买永久激活码。每个激活码绑定一台设备。</p>
+      </details>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+      <p>
+        <a href="https://github.com/deveuper/DeveSteamAPP" target="_blank" rel="noopener">GitHub 仓库</a>
+        ·
+        <a href="https://github.com/deveuper/DeveSteamAPP/issues" target="_blank" rel="noopener">问题反馈</a>
+        ·
+        <a href="https://github.com/deveuper/DeveSteamAPP/blob/main/LICENSE" target="_blank" rel="noopener">GPL-3.0 协议</a>
+      </p>
+      <p class="copyright">© 2025 Steam Deck 工具箱贡献者</p>
+    </footer>
+  </div>
+</body>
+</html>

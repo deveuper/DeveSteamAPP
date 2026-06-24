@@ -1,0 +1,88 @@
+# Steam Deck 工具箱 — CI/CD 构建流水线
+#
+# 功能：
+#   1. 当推送 tag (v*) 时触发构建
+#   2. 安装 Node.js 依赖并构建前端
+#   3. 打包插件为 zip
+#   4. 发布到 GitHub Releases
+
+name: Build and Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: 构建插件
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. 检出代码
+      - name: 检出代码
+        uses: actions/checkout@v4
+
+      # 2. 安装 Node.js
+      - name: 安装 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      # 3. 安装依赖
+      - name: 安装依赖
+        run: npm ci
+
+      # 4. 构建前端
+      - name: 构建前端
+        run: npm run build
+
+      # 5. 打包插件
+      - name: 打包插件
+        run: |
+          mkdir -p package
+          # 复制构建产物
+          cp -r dist/ package/
+          # 复制后端代码
+          cp -r backend/ package/
+          # 复制插件元数据
+          cp plugin.json package/
+          cp -r defaults/ package/
+          # 打包为 zip
+          cd package
+          zip -r ../steam-deck-toolbox.zip .
+          cd ..
+
+      # 6. 上传构建产物
+      - name: 上传构建产物
+        uses: actions/upload-artifact@v4
+        with:
+          name: steam-deck-toolbox
+          path: steam-deck-toolbox.zip
+
+  release:
+    name: 发布到 GitHub Releases
+    needs: build
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
+
+    steps:
+      # 1. 下载构建产物
+      - name: 下载构建产物
+        uses: actions/download-artifact@v4
+        with:
+          name: steam-deck-toolbox
+
+      # 2. 发布到 GitHub Releases
+      - name: 发布到 GitHub Releases
+        uses: softprops/action-gh-release@v2
+        with:
+          files: steam-deck-toolbox.zip
+          generate_release_notes: true
+          draft: false
+          prerelease: false

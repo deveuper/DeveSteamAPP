@@ -1,0 +1,44 @@
+# GitHub Pages 部署 — 安装引导网页
+#
+# 当推送 main 分支或创建新 tag 时，
+# 将 install-guide/ 目录部署到 GitHub Pages。
+# 访问地址：https://deveuper.github.io/steam-deck-toolbox
+
+name: Deploy Install Guide to Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'install-guide/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'install-guide'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
